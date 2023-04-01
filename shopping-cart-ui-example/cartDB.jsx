@@ -126,7 +126,7 @@ const Products = (props) => {
     // let uhit = "http://picsum.photos/" + n;
     // note, source.unsplash is used here because it loads images faster than picsum.photos
     // it should functionally be the same as picsum.photos which is shown in the videos
-    let uhit = "https://source.unsplash.com/random/800x800/?img=" + n;
+    let uhit = "https://picsum.photos/200/300" + n;
 
     return (
       <li key={index}>

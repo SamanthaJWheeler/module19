@@ -1,4 +1,4 @@
-// sumulate getting products from DataBase
+// simulate getting products from DataBase
 const products = [
   { name: "Apples_:", country: "Italy", cost: 3, instock: 10 },
   { name: "Oranges:", country: "Spain", cost: 4, instock: 3 },
@@ -113,8 +113,8 @@ const Products = (props) => {
   const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
 
   let list = items.map((item, index) => {
-    let n = index + 1049;
-    let url = "https://picsum.photos/id/" + n + "/50/50";
+    //let n = index + 1049;
+    //let url = "https://picsum.photos/id/" + n + "/50/50";
 
     return (
       <li key={index}>
@@ -128,21 +128,15 @@ const Products = (props) => {
   });
   let cartList = cart.map((item, index) => {
     return (
-      <Card key={index}>
-        <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey={1 + index}>
-            {item.name}
-          </Accordion.Toggle>
-        </Card.Header>
-        <Accordion.Collapse
-          onClick={() => deleteCartItem(index)}
-          eventKey={1 + index}
-        >
-          <Card.Body>
-            $ {item.cost} from {item.country}
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
+      <Accordion.Item key={1+index} eventKey={1 + index}>
+      <Accordion.Header>
+        {item.name}
+      </Accordion.Header>
+      <Accordion.Body onClick={() => deleteCartItem(index)}
+        eventKey={1 + index}>
+        $ {item.cost} from {item.country}
+      </Accordion.Body>
+    </Accordion.Item>
     );
   });
 
@@ -165,14 +159,8 @@ const Products = (props) => {
     console.log(`total updated to ${newTotal}`);
     return newTotal;
   };
-  const restockProducts = (url) => {
-    doFetch(url);
-    let newItems = data.map((item) => {
-      let { name, country, cost, instock } = item;
-      return { name, country, cost, instock };
-    });
-    setItems([...items, ...newItems]);
-  };
+  // TODO: implement the restockProducts function
+  const restockProducts = (url) => {};
 
   return (
     <Container>
@@ -183,7 +171,7 @@ const Products = (props) => {
         </Col>
         <Col>
           <h1>Cart Contents</h1>
-          <Accordion>{cartList}</Accordion>
+          <Accordion defaultActiveKey="0">{cartList}</Accordion>
         </Col>
         <Col>
           <h1>CheckOut </h1>
