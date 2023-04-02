@@ -90,9 +90,9 @@ const Products = (props) => {
   } = ReactBootstrap;
   //  Fetch Data
   const { Fragment, useState, useEffect, useReducer } = React;
-  const [query, setQuery] = useState("http://localhost:1337/products");
+  const [query, setQuery] = useState("http://localhost:1337/api/products");
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "http://localhost:1337/products",
+    "http://localhost:1337/api/products",
     {
       data: [],
     }
@@ -123,9 +123,6 @@ const Products = (props) => {
   let list = items.map((item, index) => {
     let n = index + 1049;
     let uhit = "http://picsum.photos/" + n;
-    // note, source.unsplash is used here because it loads images faster than picsum.photos
-    // it should functionally be the same as picsum.photos which is shown in the videos
-    // let uhit = "https://source.unsplash.com/random/800x800/?img=" + n;
     
     return (
       <li key={index}>
@@ -207,7 +204,7 @@ const Products = (props) => {
       <Row>
         <form
           onSubmit={(event) => {
-            restockProducts(`http://localhost:1337/${query}`);
+            restockProducts(`http://localhost:1337/apt/${query}`);
             console.log(`Restock called on ${query}`);
             event.preventDefault();
           }}
